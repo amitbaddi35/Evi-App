@@ -42,7 +42,6 @@ public class Timetable extends AppCompatActivity {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         calendar.add(Calendar.YEAR, 1);
 
-
         Date today = new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("YYYY-MM-dd");
         selectedDate = dateFormat.format(today);
