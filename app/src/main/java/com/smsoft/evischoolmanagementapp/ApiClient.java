@@ -8,7 +8,6 @@ Created By Amit Baddi On 2020-01-24
 */
 public class ApiClient {
     public static final String BASE_URL="http://smsoft.in/api/";
-//    https://eazymr.com/UAT/
     public static Retrofit retrofit = null;
     public static Retrofit getApiClient(){
         if(retrofit==null){

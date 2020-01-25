@@ -1,5 +1,6 @@
 package com.smsoft.evischoolmanagementapp;
 
+import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
 
 import retrofit2.Call;
@@ -12,13 +13,12 @@ import retrofit2.http.Query;
 Created By Amit Baddi On 2020-01-24
 */public interface ApiInterface {
     @POST("loginAuth.php")
-    Call<loginPoJo> login(@Field("Username") String Username,
-                          @Field("Password") String Password,
-                          @Query("URL") String URL
+    Call<loginPoJo> login(@Query("Username") String Username,
+                          @Query("Password") String Password,
+                          @Query("URL") String URL);
 
-
-
-    );
+    @POST("test.php")
+    Call<SchoolList> schoollist();
 
 
 

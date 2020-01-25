@@ -62,20 +62,9 @@ public class SchoolList {
             SchoolName = schoolName;
         }
 
-        @Override
-        public String toString() {
-            return SchoolName;
-        }
 
-        @Override
-        public boolean equals(Object obj) {
-            if(obj instanceof SchoolList.schoolData){
-                schoolData s=(schoolData)obj;
-                if(s.getSchoolCode().equals(SchoolCode) && s.getSchoolName().equals(SchoolName))
-                    return true;
-            }
-            return false;
-        }
+
+
     }
 
 
