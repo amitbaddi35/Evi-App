@@ -14,13 +14,14 @@ import com.smsoft.evischoolmanagementapp.PoJo.feesPoJo;
 import com.smsoft.evischoolmanagementapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class feesAdapter extends ArrayAdapter<feesPoJo.Feesdata> {
 
-    ArrayList<feesPoJo.Feesdata> mList;
+    List<feesPoJo.Feesdata> mList;
     Context mContext;
 
-    public feesAdapter(Context context, ArrayList<feesPoJo.Feesdata> list) {
+    public feesAdapter(Context context, List<feesPoJo.Feesdata> list) {
         super(context, 0,list);
         this.mContext=context;
         this.mList=list;

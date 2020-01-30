@@ -17,7 +17,14 @@ import java.util.List;
 
 public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
     Context mContext;
+    List<Att_WholeYearPoJo.AttData> mList=new ArrayList<>();
 
+    public Att_w_adapter(Context context, List<Att_WholeYearPoJo.AttData> list) {
+        super(context, 0,list);
+        this.mContext=context;
+        this.mList=list;
+
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -40,13 +47,8 @@ public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
         return convertView;
     }
 
-    List<Att_WholeYearPoJo.AttData> mList=new ArrayList<>();
-    public Att_w_adapter(Context context, List<Att_WholeYearPoJo.AttData> list) {
-        super(context, 0,list);
-        this.mContext=context;
-        this.mList=list;
 
-    }
+
 
 
 }

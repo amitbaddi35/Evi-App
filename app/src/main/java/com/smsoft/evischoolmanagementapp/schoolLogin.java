@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
+import com.smsoft.evischoolmanagementapp.SharedPref.StudSharedPref;
 import com.smsoft.evischoolmanagementapp.validation.Validation;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class schoolLogin extends AppCompatActivity {
     List<String> SchoolNames;
     List<String> SchoolURLs;
     Button submit;
+    String url="";
     ApiInterface apiInterface;
 
     com.google.android.material.textfield.TextInputEditText username,password;
@@ -61,33 +64,31 @@ public class schoolLogin extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
     }
 
     private void signin(){
-        Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),"http://demo.smsoft.in");
+
+        url= SchoolURLs.get(SchoolNames.indexOf(schoolList.getText().toString()));
+        Log.d("trace",url);
+
+        Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),url);
         call.enqueue(new Callback<loginPoJo>() {
             @Override
             public void onResponse(Call<loginPoJo> call, Response<loginPoJo> response) {
                 if(String.valueOf(response.code()).equals("200")){
                     if(response.body().getSuccess().equals("true")){
+                        StudSharedPref s=new StudSharedPref(schoolLogin.this);
+                        loginPoJo.Stud_Data ss=response.body().getData().get(0);
+                        ss.setURL(response.body().getDomain());
+
+                        s.setSharedData(ss);
                         Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
                         startActivity(intent);
-                    }else
+                    }else {
                         Toast.makeText(schoolLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
+                    }
                 }else if(!String.valueOf(response.code()).equals("200")){
-                    Toast.makeText(schoolLogin.this, R.string.error_message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(schoolLogin.this, R.string.error_message+response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -99,10 +100,12 @@ public class schoolLogin extends AppCompatActivity {
     }
 
     private void getSchools(){
+
         Call<SchoolList> call=apiInterface.schoollist();
         call.enqueue(new Callback<SchoolList>() {
             @Override
             public void onResponse(Call<SchoolList> call, Response<SchoolList> response) {
+
                 if(String.valueOf(response.code()).equals("200")){
                     if(response.body().getSuccess().equals("true")){
                         for(int i=0;i<response.body().getData().size();i++){
@@ -110,9 +113,7 @@ public class schoolLogin extends AppCompatActivity {
                             SchoolURLs.add(response.body().getData().get(i).getSchoolCode());
                             adapter=new ArrayAdapter<String>(schoolLogin.this,android.R.layout.simple_list_item_1,SchoolNames);
                             schoolList.setAdapter(adapter);
-
-
-
+                           submit.setVisibility(View.VISIBLE);
                         }
                     }else{
                         Toast.makeText(schoolLogin.this, R.string.error_message, Toast.LENGTH_SHORT).show();
@@ -125,6 +126,7 @@ public class schoolLogin extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<SchoolList> call, Throwable t) {
+                Toast.makeText(schoolLogin.this, t.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });

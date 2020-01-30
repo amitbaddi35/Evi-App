@@ -3,6 +3,7 @@ package com.smsoft.evischoolmanagementapp.PoJo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class feesPoJo {
@@ -19,16 +20,16 @@ public class feesPoJo {
     }
 
     public List<Feesdata> getFeesData() {
-        return FeesData;
+        return Data;
     }
 
     public void setFeesData(List<Feesdata> feesData) {
-        FeesData = feesData;
+        Data = feesData;
     }
 
-    @SerializedName("FeesData")
+    @SerializedName("Data")
     @Expose
-    private List<Feesdata> FeesData;
+    private List<Feesdata> Data;
 
     public static class Feesdata{
         @SerializedName("HeadName")

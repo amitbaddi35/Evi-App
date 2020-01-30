@@ -13,6 +13,18 @@ public class loginPoJo {
     @Expose
     private String Success;
 
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    @SerializedName("domain")
+    @Expose
+    private String domain;
+
     @SerializedName("Message")
     @Expose
     private String Message;
@@ -53,6 +65,35 @@ public class loginPoJo {
         @SerializedName("Name")
         @Expose
         private String Name;
+
+        public String getURL() {
+            return URL;
+        }
+
+        public void setURL(String URL) {
+            this.URL = URL;
+        }
+
+
+        public String getClasss() {
+            return Class;
+        }
+
+        @SerializedName("URL")
+        @Expose
+        private String URL;
+
+        @SerializedName("Register_number")
+        @Expose
+        private String Register_number;
+
+        public String getRegister_number() {
+            return Register_number;
+        }
+
+        public void setRegister_number(String register_number) {
+            Register_number = register_number;
+        }
 
         @SerializedName("Communication_number")
         @Expose

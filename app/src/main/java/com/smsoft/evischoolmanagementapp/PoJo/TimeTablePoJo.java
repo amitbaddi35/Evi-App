@@ -22,17 +22,17 @@ public class TimeTablePoJo {
         Success = success;
     }
 
-    public List<PeriodData> getPeriods() {
-        return Periods;
+    public List<PeriodData> getData() {
+        return Data;
     }
 
-    public void setPeriods(List<PeriodData> periods) {
-        Periods = periods;
+    public void setData(List<PeriodData> data) {
+        Data = data;
     }
 
-    @SerializedName("Periods")
+    @SerializedName("Data")
     @Expose
-    private List<PeriodData> Periods;
+    private List<PeriodData> Data;
 
     public static class PeriodData{
         @SerializedName("Time")
@@ -59,11 +59,38 @@ public class TimeTablePoJo {
         @Expose
         private String Alter;
 
-        public PeriodData(String time, String subject, String teacher,String alter) {
-            Alter=alter;
+        @SerializedName("NewTeacher")
+        @Expose
+        private String NewTeacher;
+
+        public String getNewTeacher() {
+            return NewTeacher;
+        }
+
+        public void setNewTeacher(String newTeacher) {
+            NewTeacher = newTeacher;
+        }
+
+        public String getNewSubject() {
+            return NewSubject;
+        }
+
+        public void setNewSubject(String newSubject) {
+            NewSubject = newSubject;
+        }
+
+        @SerializedName("NewSubject")
+        @Expose
+        private String NewSubject;
+
+
+        public PeriodData(String time, String subject, String teacher, String alter, String newTeacher, String newSubject) {
             Time = time;
             Subject = subject;
             Teacher = teacher;
+            Alter = alter;
+            NewTeacher = newTeacher;
+            NewSubject = newSubject;
         }
 
         public String getTime() {

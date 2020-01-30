@@ -6,6 +6,28 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Att_WholeYearPoJo {
+
+
+    @SerializedName("Success")
+    @Expose
+    private String Success;
+
+    @SerializedName("Message")
+    @Expose
+    private String Message;
+
+    public String getMessage() {
+        return Message;
+    }
+
+    public void setMessage(String message) {
+        Message = message;
+    }
+
+    @SerializedName("Data")
+    @Expose
+    private List<AttData> Data;
+
     public String getSuccess() {
         return Success;
     }
@@ -14,21 +36,13 @@ public class Att_WholeYearPoJo {
         Success = success;
     }
 
-    public List<notificationsPoJo.notifications> getData() {
-        return data;
+    public List<AttData> getData() {
+        return Data;
     }
 
-    public void setData(List<notificationsPoJo.notifications> data) {
-        this.data = data;
+    public void setData(List<AttData> data) {
+        Data = data;
     }
-
-    @SerializedName("Success")
-    @Expose
-    private String Success;
-
-    @SerializedName("data")
-    @Expose
-    private List<notificationsPoJo.notifications> data;
 
     public static class AttData{
 

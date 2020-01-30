@@ -19,9 +19,9 @@ import java.util.List;
 
 
 public class notificationAdapter extends ArrayAdapter<notificationsPoJo.notifications> {
-    ArrayList<notificationsPoJo.notifications> mList;
+    List<notificationsPoJo.notifications> mList;
     Context mContext;
-    public notificationAdapter(Context context, ArrayList<notificationsPoJo.notifications> list) {
+    public notificationAdapter(Context context, List<notificationsPoJo.notifications> list) {
         super(context, 0,list);
         this.mContext=context;
         this.mList=list;
@@ -31,12 +31,9 @@ public class notificationAdapter extends ArrayAdapter<notificationsPoJo.notifica
     public View getView(int position, View convertView, ViewGroup parent) {
 
         notificationsPoJo.notifications obj=mList.get(position);
-
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.notification_layout, parent, false);
         }
-
-
         TextView date=(TextView)convertView.findViewById(R.id.date);
         TextView title=(TextView)convertView.findViewById(R.id.title);
         TextView description=(TextView)convertView.findViewById(R.id.disc);

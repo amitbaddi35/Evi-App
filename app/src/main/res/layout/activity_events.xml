@@ -48,6 +48,7 @@ android:weightSum="1.0">
         android:layout_margin="10dp"
         app:cardCornerRadius="2dp">
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -68,8 +69,9 @@ android:weightSum="1.0">
                 android:id="@+id/message"
                 android:padding="15dp"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat"
                 android:layout_height="wrap_content"
-                android:text="There is No Events on This Day"
+                android:text=""
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
         </LinearLayout>

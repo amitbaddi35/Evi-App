@@ -15,20 +15,32 @@ public class notificationsPoJo {
     }
 
     public List<notifications> getData() {
-        return data;
+        return Data;
     }
 
     public void setData(List<notifications> data) {
-        this.data = data;
+        this.Data = data;
     }
 
     @SerializedName("Success")
     @Expose
     private String Success;
 
-    @SerializedName("data")
+    public String getMessage() {
+        return Message;
+    }
+
+    public void setMessage(String message) {
+        Message = message;
+    }
+
+    @SerializedName("Message")
     @Expose
-    private List<notifications> data;
+    private String Message;
+
+    @SerializedName("Data")
+    @Expose
+    private List<notifications> Data;
 
     public static class notifications{
         @SerializedName("Date")

@@ -43,11 +43,13 @@ public class TimetableAdapter extends ArrayAdapter<TimeTablePoJo.PeriodData> {
         time.setText(obj.getTime());
         teacher.setText(obj.getTeacher());
         subject.setText(obj.getSubject());
-
-        if(obj.getAlter().equals("false")){
-            teacher.setTextColor(R.color.red);
+        if(!obj.getAlter().equals("0")){
+            teacher.setText(obj.getNewTeacher());
+            subject.setText(obj.getNewSubject());
+            time.setTextColor(R.color.colorPrimaryDark);
+            teacher.setTextColor(R.color.colorPrimaryDark);
+            subject.setTextColor(R.color.colorPrimaryDark);
         }
-
         return convertView;
     }
 }

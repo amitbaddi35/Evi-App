@@ -89,6 +89,7 @@
 
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/submit"
                 android:layout_margin="20dp"
                 android:layout_width="match_parent"
