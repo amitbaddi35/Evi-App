@@ -25,6 +25,18 @@ public class loginPoJo {
     @Expose
     private String domain;
 
+    @SerializedName("schoolName")
+    @Expose
+    private String schoolName;
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
     @SerializedName("Message")
     @Expose
     private String Message;
@@ -83,6 +95,10 @@ public class loginPoJo {
         @Expose
         private String URL;
 
+        @SerializedName("schoolName")
+        @Expose
+        private String schoolName;
+
         @SerializedName("Register_number")
         @Expose
         private String Register_number;
@@ -114,6 +130,14 @@ public class loginPoJo {
         @SerializedName("Sex")
         @Expose
         private String Sex;
+
+        public String getSchoolName() {
+            return schoolName;
+        }
+
+        public void setSchoolName(String schoolName) {
+            this.schoolName = schoolName;
+        }
 
         @SerializedName("Date_of_birth")
         @Expose

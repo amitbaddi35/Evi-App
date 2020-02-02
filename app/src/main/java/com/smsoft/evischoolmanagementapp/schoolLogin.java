@@ -69,7 +69,7 @@ public class schoolLogin extends AppCompatActivity {
     private void signin(){
 
         url= SchoolURLs.get(SchoolNames.indexOf(schoolList.getText().toString()));
-        Log.d("trace",url);
+
 
         Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),url);
         call.enqueue(new Callback<loginPoJo>() {
@@ -80,7 +80,7 @@ public class schoolLogin extends AppCompatActivity {
                         StudSharedPref s=new StudSharedPref(schoolLogin.this);
                         loginPoJo.Stud_Data ss=response.body().getData().get(0);
                         ss.setURL(response.body().getDomain());
-
+                        ss.setSchoolName(response.body().getSchoolName());
                         s.setSharedData(ss);
                         Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
                         startActivity(intent);

@@ -21,15 +21,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_roundlogo100x100"/>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/schoolName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:drawablePadding="10dp"
             android:fontFamily="@font/days_one"
+            android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-
-            android:text="EVI Institute Management Solutions"/>
+            android:padding="3dp"
+            android:text=""
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:textSize="20dp"  />
 
 
     </LinearLayout>
@@ -72,6 +80,18 @@
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
+                <Spinner
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/spinner2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
                 <ListView
                     android:id="@+id/listview"
                     android:layout_width="match_parent"

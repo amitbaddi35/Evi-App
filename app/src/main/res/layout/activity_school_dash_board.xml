@@ -24,15 +24,25 @@ android:weightSum="10">
             android:layout_height="wrap_content"
             android:src="@drawable/ic_roundlogo100x100" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/schoolName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
             android:fontFamily="@font/days_one"
             android:gravity="center"
-            android:text="EVI Institute Management Solutions"
             android:textColor="@color/colorPrimary"
+            android:padding="3dp"
+            android:text=""
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:textSize="20dp"  />
 
-            android:textSize="20sp" />
+
 
 
     </LinearLayout>
@@ -57,12 +67,7 @@ android:weightSum="10">
         android:textColor="@color/colorPrimaryDark"
        />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="2dp"
-        >
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -80,6 +85,7 @@ android:weightSum="10">
                         android:layout_margin="10dp"
                         app:cardBackgroundColor="@color/cardview_light_background"
                         app:cardElevation="2dp"
+
                         android:layout_weight="1">
                         <LinearLayout
                             android:id="@+id/fees"
@@ -155,7 +161,7 @@ android:weightSum="10">
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_attendance"/>
+                                android:src="@drawable/ic_exam"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -220,7 +226,7 @@ android:weightSum="10">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_exam"/>
+                            android:src="@drawable/ic_attendance"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -334,7 +340,7 @@ android:weightSum="10">
             </LinearLayout>
         </ScrollView>
 
-    </androidx.cardview.widget.CardView>
+
 
 
 </LinearLayout>

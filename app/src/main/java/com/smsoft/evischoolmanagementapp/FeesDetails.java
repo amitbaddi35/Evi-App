@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Adapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
@@ -35,6 +36,10 @@ public class FeesDetails extends AppCompatActivity {
 
         StudSharedPref s=new StudSharedPref(FeesDetails.this);
          stud_data=s.getSharedData();
+
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
 
 
         data=new ArrayList<feesPoJo.Feesdata>();

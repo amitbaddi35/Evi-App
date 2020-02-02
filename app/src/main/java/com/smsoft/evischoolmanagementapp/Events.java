@@ -37,12 +37,16 @@ public class Events extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-
+        StudSharedPref s=new StudSharedPref(Events.this);
+        stud_data=s.getSharedData();
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
-
+        calendarView = findViewById(R.id.calendarView);
 
         date=(TextView)findViewById(R.id.date);
         message=(TextView)findViewById(R.id.message);
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
 
 
         calendar = Calendar.getInstance();
@@ -58,18 +62,23 @@ public class Events extends AppCompatActivity {
         calendar.add(Calendar.YEAR, 1);
 
 
+
+
         Date today = new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("YYYY-MM-dd");
           selectedDate = dateFormat.format(today);
 
         date.setText("Date : "+selectedDate);
+
+
+
         getEvents(selectedDate);
 
 
 
 
 
-        calendarView = findViewById(R.id.calendarView);
+
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -87,8 +96,7 @@ public class Events extends AppCompatActivity {
     }
 
     private void getEvents(String date){
-        StudSharedPref s=new StudSharedPref(Events.this);
-        stud_data=s.getSharedData();
+
         Call<EventsPoJo> call=apiInterface.get_events(date,stud_data.getURL());
         call.enqueue(new Callback<EventsPoJo>() {
             @SuppressLint("ResourceAsColor")

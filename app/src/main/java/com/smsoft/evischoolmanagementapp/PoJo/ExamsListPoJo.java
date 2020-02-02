@@ -13,9 +13,9 @@ public class ExamsListPoJo {
     @Expose
     private String Success;
 
-    public ExamsListPoJo(List<String> exams) {
-        Exams = exams;
-    }
+    @SerializedName("Data")
+    @Expose
+    private List<Exams_List> Data;
 
     public String getSuccess() {
         return Success;
@@ -25,20 +25,50 @@ public class ExamsListPoJo {
         Success = success;
     }
 
-    public List<String> getExams() {
-        return Exams;
+
+
+    public List<Exams_List> getData() {
+        return Data;
     }
 
-    public void setExams(List<String> exams) {
-        Exams = exams;
+    public void setData(List<Exams_List> data) {
+        Data = data;
     }
 
-    public ExamsListPoJo(String success, List<String> exams) {
-        Success = success;
-        Exams = exams;
+    public static class Exams_List{
+        @SerializedName("Exam")
+        @Expose
+        private String Exam;
+
+        @SerializedName("Type")
+        @Expose
+        private String Type;
+
+        /*@Override
+        public String toString() {
+            return Exam;
+        }*/
+
+        public String getExam() {
+            return Exam;
+        }
+
+        public void setExam(String exam) {
+            Exam = exam;
+        }
+
+        public String getType() {
+            return Type;
+        }
+
+        public void setType(String type) {
+            Type = type;
+        }
     }
 
-    @SerializedName("Exams")
-    @Expose
-    private List<String> Exams;
-}
+
+
+    }
+
+
+

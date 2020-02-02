@@ -15,7 +15,7 @@ public class ExamPoJo {
 
     public ExamPoJo(String success, List<Examdata> examData) {
         Success = success;
-        ExamData = examData;
+        Data = examData;
     }
 
     public String getSuccess() {
@@ -27,16 +27,16 @@ public class ExamPoJo {
     }
 
     public List<Examdata> getExamData() {
-        return ExamData;
+        return Data;
     }
 
     public void setExamData(List<Examdata> examData) {
-        ExamData = examData;
+        Data = examData;
     }
 
-    @SerializedName("ExamData")
+    @SerializedName("Data")
     @Expose
-    private List<Examdata> ExamData;
+    private List<Examdata> Data;
 
     public static class Examdata{
         @SerializedName("Subject")

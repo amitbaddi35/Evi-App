@@ -2,6 +2,8 @@ package com.smsoft.evischoolmanagementapp;
 
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.EventsPoJo;
+import com.smsoft.evischoolmanagementapp.PoJo.ExamPoJo;
+import com.smsoft.evischoolmanagementapp.PoJo.ExamsListPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
 import com.smsoft.evischoolmanagementapp.PoJo.TimeTablePoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.feedbackListPoJo;
@@ -63,4 +65,21 @@ Created By Amit Baddi On 2020-01-24
                                    @Query("Class") String Class,
                                    @Query("Division") String Division,
                                    @Query("URL") String URL);
+
+    @POST("ExamList.php")
+    Call<ExamsListPoJo> getExamList(@Query("Class") String Class,
+                                       @Query("Division") String Division,
+                                       @Query("URL") String URL,
+                                       @Query("Roll") String Roll);
+
+    @POST("ExamMarks.php")
+    Call<ExamPoJo> getExamResults(@Query("Class") String Class,
+                                        @Query("Division") String Division,
+                                        @Query("URL") String URL,
+                                        @Query("Roll") String Roll,
+                                        @Query("ExamName") String ExamName,
+                                        @Query("ExamType") String ExamType,
+                                        @Query("Term") String Term,
+                                        @Query("S_id") String S_id
+                                  );
 }

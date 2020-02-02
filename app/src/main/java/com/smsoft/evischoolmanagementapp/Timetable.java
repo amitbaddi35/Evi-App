@@ -52,6 +52,10 @@ public class Timetable extends AppCompatActivity {
         StudSharedPref s=new StudSharedPref(this);
         stud_data=s.getSharedData();
 
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
+
 
         calendar.set(Calendar.MONTH, Calendar.NOVEMBER);
         calendar.set(Calendar.DAY_OF_MONTH, 9);

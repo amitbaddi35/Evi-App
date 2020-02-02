@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smsoft.evischoolmanagementapp.PoJo.feesPoJo;
@@ -36,21 +37,13 @@ public class Notifications extends AppCompatActivity {
         StudSharedPref s=new StudSharedPref(Notifications.this);
         stud_data=s.getSharedData();
 
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
+
         listView=(ListView)findViewById(R.id.listview);
         data=new ArrayList<>();
         getNoti();
-      //  Toast.makeText(Notifications.this, "Hi", Toast.LENGTH_SHORT).show();
-
-/*
-        String d="In a RGB color space, hex #000000 (also known as Black) is composed of 0% red, 0% green and 0% blue. Whereas in a CMYK color space, it is composed of 0% cyan, 0% magenta, 0% yellow and 100% black. It has a hue angle of 0 degrees, a saturation of 0% and a lightness of 0%. #000000 color hex could be obtained by blending #000000 with #000000. #000000 (or #000) is a websafe color.";
-
-
-        for(int i=1;i<=5;i++){
-            notificationsPoJo.notifications obj=new notificationsPoJo.notifications(String.valueOf("2020-11-"+i),"Title 1",d);
-            data.add(obj);
-        }
-        notificationAdapter adapter=new notificationAdapter(Notifications.this,data);
-        listView.setAdapter(adapter);*/
 
      }
 

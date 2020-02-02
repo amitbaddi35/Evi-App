@@ -32,6 +32,11 @@ public class SchoolDashBoard extends AppCompatActivity {
         events=(LinearLayout)findViewById(R.id.events);
         TextView user=(TextView)findViewById(R.id.user);
 
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
+
+
         user.setText(stud_data.getName());
 
         fees.setOnClickListener(new View.OnClickListener() {

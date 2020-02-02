@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smsoft.evischoolmanagementapp.PoJo.feedbackListPoJo;
@@ -43,6 +44,10 @@ public class Feedback extends AppCompatActivity {
         message=(com.google.android.material.textfield.TextInputEditText)findViewById(R.id.message);
         StudSharedPref s=new StudSharedPref(this);
         stud_data=s.getSharedData();
+
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
         feedbacklist();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
@@ -33,6 +34,9 @@ public class Attendance extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.listview);
         StudSharedPref s=new StudSharedPref(Attendance.this);
         stud_data=s.getSharedData();
+        TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        schoolname.setText(stud_data.getSchoolName());
+        schoolname.setSelected(true);
 
         getAtt();
         String[] months={"June", "July", "August", "September", "October",
