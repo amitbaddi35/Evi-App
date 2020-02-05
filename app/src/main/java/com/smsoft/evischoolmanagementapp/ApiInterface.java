@@ -1,5 +1,6 @@
 package com.smsoft.evischoolmanagementapp;
 
+import com.smsoft.evischoolmanagementapp.PoJo.AdsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.EventsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.ExamPoJo;
@@ -24,10 +25,14 @@ Created By Amit Baddi On 2020-01-24
     @POST("loginAuth.php")
     Call<loginPoJo> login(@Query("Username") String Username,
                           @Query("Password") String Password,
-                          @Query("URL") String URL);
+                          @Query("URL") String URL,
+                          @Query("fcm") String fcm);
 
-    @POST("test.php")
+    @POST("SchoolList.php")
     Call<SchoolList> schoollist();
+
+    @POST("AdvtUrls.php")
+    Call<AdsPoJo> getAds();
 
     @POST("FeesDetails.php")
     Call<feesPoJo> FeesDetails(@Query("Register_Number") String Register_Number,

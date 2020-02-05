@@ -2,6 +2,7 @@ package com.smsoft.evischoolmanagementapp.SharedPref;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
@@ -36,6 +37,32 @@ public class StudSharedPref {
         editor.commit();
     }
 
+    public void setSharedGlobal(loginPoJo.Stud_Data stud_data){
+        SharedPreferences sharedPreferences = null;
+        sharedPreferences = mContext.getSharedPreferences("Global", MODE_PRIVATE);
+        Gson gson=new Gson();
+        String toSharedPrefString=gson.toJson(stud_data);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("Global",toSharedPrefString);
+        editor.commit();
+    }
+
+    public loginPoJo.Stud_Data getGlobalData() {
+        loginPoJo.Stud_Data stud_data;
+        stud_data=new loginPoJo.Stud_Data();
+        SharedPreferences sharedPreferences;
+        sharedPreferences = mContext.getSharedPreferences("Global", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String fromSharedPref = sharedPreferences.getString("Global", "Empty");
+        if (!fromSharedPref.equals("Empty")) {
+            stud_data = gson.fromJson(fromSharedPref, loginPoJo.Stud_Data.class);
+        }else {
+           // stud_data.setSchoolName("");
+        }
+        return stud_data;
+    }
+
     public loginPoJo.Stud_Data getSharedData() {
         loginPoJo.Stud_Data stud_data;
         stud_data=new loginPoJo.Stud_Data();
@@ -45,10 +72,9 @@ public class StudSharedPref {
         Gson gson = new Gson();
         String fromSharedPref = sharedPreferences.getString("Stud_Data", "Empty");
         if (!fromSharedPref.equals("Empty")) {
-
-            stud_data = gson.fromJson(fromSharedPref, loginPoJo.Stud_Data.class);
-        }else {
-            //stud_data.setUatoken("");
+                stud_data = gson.fromJson(fromSharedPref, loginPoJo.Stud_Data.class);
+             }else {
+            stud_data.setSchoolName("");
         }
         return stud_data;
     }

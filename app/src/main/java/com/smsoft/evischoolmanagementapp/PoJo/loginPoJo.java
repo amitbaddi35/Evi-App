@@ -29,6 +29,19 @@ public class loginPoJo {
     @Expose
     private String schoolName;
 
+    @SerializedName("schoolcode")
+    @Expose
+    private String schoolcode;
+
+
+    public String getSchoolCode() {
+        return schoolcode;
+    }
+
+    public void setSchoolCode(String schoolCode) {
+        this.schoolcode = schoolCode;
+    }
+
     public String getSchoolName() {
         return schoolName;
     }
@@ -95,9 +108,33 @@ public class loginPoJo {
         @Expose
         private String URL;
 
+        public String getFcm() {
+            return fcm;
+        }
+
+        public void setFcm(String fcm) {
+            this.fcm = fcm;
+        }
+
+        @SerializedName("fcm")
+        @Expose
+        private String fcm;
+
         @SerializedName("schoolName")
         @Expose
         private String schoolName;
+
+        public String getSchoolCode() {
+            return mschoolCode;
+        }
+
+        public void setSchoolCode(String schoolCode) {
+            this.mschoolCode = schoolCode;
+        }
+
+        @SerializedName("mschoolCode")
+        @Expose
+        private String mschoolCode;
 
         @SerializedName("Register_number")
         @Expose

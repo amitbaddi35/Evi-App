@@ -1,7 +1,9 @@
 package com.smsoft.evischoolmanagementapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
 import com.smsoft.evischoolmanagementapp.SharedPref.StudSharedPref;
@@ -33,6 +40,8 @@ public class schoolLogin extends AppCompatActivity {
     Button submit;
     String url="";
     ApiInterface apiInterface;
+    loginPoJo.Stud_Data stud_data;
+
 
     com.google.android.material.textfield.TextInputEditText username,password;
     AutoCompleteTextView schoolList;
@@ -41,6 +50,10 @@ public class schoolLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_login);
+
+
+        StudSharedPref s=new StudSharedPref(schoolLogin.this);
+        stud_data=s.getGlobalData();
 
         SchoolNames=new ArrayList<String>();
         SchoolURLs=new ArrayList<String>();
@@ -57,11 +70,9 @@ public class schoolLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Validation val=new Validation();
                     if(val.text_field_validation(username) & val.text_field_validation(password)){
+
                         signin();
                     }
-
-
-
             }
         });
     }
@@ -69,9 +80,7 @@ public class schoolLogin extends AppCompatActivity {
     private void signin(){
 
         url= SchoolURLs.get(SchoolNames.indexOf(schoolList.getText().toString()));
-
-
-        Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),url);
+        Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),url,stud_data.getFcm());
         call.enqueue(new Callback<loginPoJo>() {
             @Override
             public void onResponse(Call<loginPoJo> call, Response<loginPoJo> response) {
@@ -81,9 +90,21 @@ public class schoolLogin extends AppCompatActivity {
                         loginPoJo.Stud_Data ss=response.body().getData().get(0);
                         ss.setURL(response.body().getDomain());
                         ss.setSchoolName(response.body().getSchoolName());
+                        ss.setFcm(s.getGlobalData().getFcm());
+                        ss.setSchoolCode(response.body().getSchoolCode());
+                        String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
+                        //Subscribe To School Topic and Class/Div Topic
+                        Log.d("trace",String.valueOf(response.body().getSchoolCode()));
+                        Log.d("trace",classTopic);
+                        FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
+                        FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
+
                         s.setSharedData(ss);
+
+
                         Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
                         startActivity(intent);
+                        finish();
                     }else {
                         Toast.makeText(schoolLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
