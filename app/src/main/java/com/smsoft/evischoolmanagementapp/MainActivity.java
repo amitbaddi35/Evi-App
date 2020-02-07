@@ -71,5 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 //myDialog.dismiss();
             }
         },SPLASH_TIME_OUT);
+        finish();
     }
+
 }
