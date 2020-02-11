@@ -32,6 +32,19 @@ public class feesPoJo {
     private List<Feesdata> Data;
 
     public static class Feesdata{
+
+        @SerializedName("HeadId")
+        @Expose
+        private String HeadId;
+
+        public String getHeadId() {
+            return HeadId;
+        }
+
+        public void setHeadId(String headId) {
+            HeadId = headId;
+        }
+
         @SerializedName("HeadName")
         @Expose
         private String HeadName;

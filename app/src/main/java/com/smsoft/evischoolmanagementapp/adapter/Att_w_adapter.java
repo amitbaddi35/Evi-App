@@ -1,6 +1,7 @@
 package com.smsoft.evischoolmanagementapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.smsoft.evischoolmanagementapp.AttendanceDayWise;
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
 import com.smsoft.evischoolmanagementapp.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
     Context mContext;
+
+
+
     List<Att_WholeYearPoJo.AttData> mList=new ArrayList<>();
 
     public Att_w_adapter(Context context, List<Att_WholeYearPoJo.AttData> list) {
@@ -28,7 +37,7 @@ public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Att_WholeYearPoJo.AttData obj=mList.get(position);
+        final Att_WholeYearPoJo.AttData obj=mList.get(position);
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.attendance_layout, parent, false);
         }
@@ -38,6 +47,18 @@ public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
         TextView Holidays=(TextView)convertView.findViewById(R.id.holiday);
 
         ImageView submit=(ImageView) convertView.findViewById(R.id.submit);
+
+
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, AttendanceDayWise.class);
+                intent.putExtra("Month",obj.getMonthNumber());
+                mContext.startActivity(intent);
+            }
+        });
 
         Month.setText(obj.getMonth());
         Present.setText(obj.getPresent());

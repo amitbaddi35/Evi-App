@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         new Handler().postDelayed(new Runnable() {
 
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -40,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent HomeIntent = new Intent(MainActivity.this, Dashboard.class);
                 startActivity(HomeIntent);
                 StudSharedPref s = new StudSharedPref(MainActivity.this);
-
-
+                finish();
                 /*    U ll get Firebase ID here  */
                 /*FirebaseInstanceId.getInstance().getInstanceId()
                         .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 //myDialog.dismiss();
             }
         },SPLASH_TIME_OUT);
-        finish();
+
     }
 
 }

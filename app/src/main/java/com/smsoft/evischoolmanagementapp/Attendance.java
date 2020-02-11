@@ -39,19 +39,6 @@ public class Attendance extends AppCompatActivity {
         schoolname.setSelected(true);
 
         getAtt();
-        String[] months={"June", "July", "August", "September", "October",
-                "November", "December","January" , "February" , "March" , "April", "May"};
-
-       /* for(int i=0;i<months.length;i++){
-            Att_WholeYearPoJo.AttData obj=new Att_WholeYearPoJo.AttData(months[i],"25","5","5");
-            data.add(obj);
-        }*/
-
-
-        /*Att_w_adapter adapter=new Att_w_adapter(Attendance.this,data);
-        listView.setAdapter(adapter);*/
-
-
 
     }
 

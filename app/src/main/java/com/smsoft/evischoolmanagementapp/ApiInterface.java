@@ -1,10 +1,13 @@
 package com.smsoft.evischoolmanagementapp;
 
 import com.smsoft.evischoolmanagementapp.PoJo.AdsPoJo;
+import com.smsoft.evischoolmanagementapp.PoJo.Att_Day_Wise_PoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
+import com.smsoft.evischoolmanagementapp.PoJo.EventsDatesPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.EventsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.ExamPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.ExamsListPoJo;
+import com.smsoft.evischoolmanagementapp.PoJo.FeesReciptsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
 import com.smsoft.evischoolmanagementapp.PoJo.TimeTablePoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.feedbackListPoJo;
@@ -31,6 +34,9 @@ Created By Amit Baddi On 2020-01-24
     @POST("SchoolList.php")
     Call<SchoolList> schoollist();
 
+    @POST("EventsDates.php")
+    Call<EventsDatesPoJo> EventsDates(@Query("URL") String URL);
+
     @POST("AdvtUrls.php")
     Call<AdsPoJo> getAds();
 
@@ -38,11 +44,26 @@ Created By Amit Baddi On 2020-01-24
     Call<feesPoJo> FeesDetails(@Query("Register_Number") String Register_Number,
                                @Query("URL") String URL);
 
+    @POST("FeesRecipts.php")
+    Call<FeesReciptsPoJo> getFeesRecipt(@Query("Register_Number") String Register_Number,
+                                        @Query("URL") String URL,
+                                        @Query("HeadId") String HeadId);
+
+
+
     @POST("attendance.php")
     Call<Att_WholeYearPoJo> get_attendance(@Query("Class") String Class,
                                            @Query("Division") String Division,
                                            @Query("URL") String URL,
                                            @Query("Roll") String Roll);
+
+    @POST("AttendanceDayWise.php")
+    Call<Att_Day_Wise_PoJo> get_attendance_daywise(@Query("Class") String Class,
+                                                   @Query("Division") String Division,
+                                                   @Query("Month") String Month,
+                                                   @Query("URL") String URL,
+                                                   @Query("Roll") String Roll);
+
     @POST("notification.php")
     Call<notificationsPoJo> get_notification(@Query("Class") String Class,
                                            @Query("Division") String Division,

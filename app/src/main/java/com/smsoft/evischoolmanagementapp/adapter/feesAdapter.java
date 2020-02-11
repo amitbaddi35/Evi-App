@@ -1,6 +1,7 @@
 package com.smsoft.evischoolmanagementapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.smsoft.evischoolmanagementapp.AttendanceDayWise;
+import com.smsoft.evischoolmanagementapp.FeesRecipts;
 import com.smsoft.evischoolmanagementapp.PoJo.feesPoJo;
 import com.smsoft.evischoolmanagementapp.R;
 
@@ -29,7 +33,7 @@ public class feesAdapter extends ArrayAdapter<feesPoJo.Feesdata> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        feesPoJo.Feesdata obj= mList.get(position);
+        final feesPoJo.Feesdata obj= mList.get(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fees_layout, parent, false);
         }
@@ -46,7 +50,14 @@ public class feesAdapter extends ArrayAdapter<feesPoJo.Feesdata> {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                layout.setVisibility(View.VISIBLE);
+                if(!obj.getPaidAmount().equals("0")){
+                    Intent intent=new Intent(mContext, FeesRecipts.class);
+                    intent.putExtra("HeadId",obj.getHeadId());
+                    mContext.startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Fees Not Paid", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

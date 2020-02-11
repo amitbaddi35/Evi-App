@@ -38,5 +38,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.3.2'
 
 
+    implementation 'sun.bob:mcalendarview:1.0.0'
+
+
     implementation 'com.nineoldandroids:library:2.4.0'
 }

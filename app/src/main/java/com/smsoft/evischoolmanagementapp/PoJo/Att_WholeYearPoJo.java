@@ -58,6 +58,18 @@ public class Att_WholeYearPoJo {
         @Expose
         private String month;
 
+        @SerializedName("monthNumber")
+        @Expose
+        private String monthNumber;
+
+
+        public String getMonthNumber() {
+            return monthNumber;
+        }
+
+        public void setMonthNumber(String monthNumber) {
+            this.monthNumber = monthNumber;
+        }
 
         @SerializedName("present")
         @Expose

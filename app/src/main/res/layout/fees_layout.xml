@@ -37,9 +37,9 @@
                         <ImageView
                             android:id="@+id/dropdown"
                             android:layout_width="match_parent"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_weight="5"
-                            android:src="@drawable/ic_dropdown"/>
+                            android:src="@drawable/ic_submit"/>
                     </LinearLayout>
 
                 <LinearLayout

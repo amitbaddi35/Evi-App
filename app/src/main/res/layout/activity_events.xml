@@ -55,34 +55,40 @@ android:weightSum="1.0">
     android:layout_weight="0.9"
     android:paddingTop="30dp"
     android:layout_marginTop="0dp"
+
     android:background="@drawable/halfround"
     android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="2dp">
-        <LinearLayout
 
+        <LinearLayout
+                android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <CalendarView
+
+            <sun.bob.mcalendarview.MCalendarView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </sun.bob.mcalendarview.MCalendarView>
+
+
+            <!--<CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            </CalendarView>
+            </CalendarView>-->
             <TextView
                 android:id="@+id/date"
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                 android:textSize="15dp"
+                android:textAlignment="center"
+                android:text="2020-01-02"
+                 android:textSize="30dp"
                 android:textColor="@color/colorPrimaryDark"/>
             <TextView
                 android:id="@+id/message"
-                android:padding="15dp"
+                android:padding="20dp"
                 android:layout_width="match_parent"
                 android:fontFamily="@font/montserrat"
                 android:layout_height="wrap_content"
@@ -90,11 +96,6 @@ android:weightSum="1.0">
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-
 </LinearLayout>
 </LinearLayout>
 </RelativeLayout>
