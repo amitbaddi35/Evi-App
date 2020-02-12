@@ -58,14 +58,19 @@ android:weightSum="10">
 
     <TextView
         android:id="@+id/user"
+        android:gravity="center"
+        android:text="nbnxznmbxznz"
+        android:drawableLeft="@drawable/ic_usr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/days_one"
         android:textSize="20dp"
         android:layout_margin="10dp"
         android:layout_gravity="center"
+        android:drawableRight="@drawable/ic_edit2"
         android:textColor="@color/colorPrimaryDark"
        />
+
 
 
         <ScrollView

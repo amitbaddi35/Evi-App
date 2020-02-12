@@ -203,8 +203,6 @@ public class loginPoJo {
         public void setCommunication_number(String communication_number) {
             Communication_number = communication_number;
         }
-
-
         public String getClassds() {
             return Class;
         }

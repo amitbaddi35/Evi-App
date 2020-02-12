@@ -22,6 +22,8 @@ public class SchoolDashBoard extends AppCompatActivity {
         StudSharedPref s=new StudSharedPref(SchoolDashBoard.this);
             final loginPoJo.Stud_Data stud_data=s.getSharedData();
 
+
+
         fees=(LinearLayout)findViewById(R.id.fees);
         notifications=(LinearLayout)findViewById(R.id.notification);
         attendance=(LinearLayout)findViewById(R.id.attendance);
@@ -38,6 +40,14 @@ public class SchoolDashBoard extends AppCompatActivity {
 
 
         user.setText(stud_data.getName());
+
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SchoolDashBoard.this,Profile.class);
+                startActivity(intent);
+            }
+        });
 
         fees.setOnClickListener(new View.OnClickListener() {
             @Override
