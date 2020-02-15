@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
 import com.smsoft.evischoolmanagementapp.SharedPref.StudSharedPref;
+import com.smsoft.evischoolmanagementapp.adapter.LibraryAdapter;
 
 public class SchoolDashBoard extends AppCompatActivity {
     private LinearLayout fees,notifications,attendance,timetable,exam,digi,feedback,events;
@@ -107,6 +108,14 @@ public class SchoolDashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(SchoolDashBoard.this,Timetable.class);
+                startActivity(intent);
+            }
+        });
+
+        digi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SchoolDashBoard.this, Library.class);
                 startActivity(intent);
             }
         });

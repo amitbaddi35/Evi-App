@@ -63,17 +63,11 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
 
 
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
-
         fetchAds();
-
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.DepthPage);
-
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
-
         sliderLayout.setDuration(5000);
-
         sliderLayout.addOnPageChangeListener((ViewPagerEx.OnPageChangeListener) Dashboard.this);
         deleteDirectoryTree(this.getCacheDir());
 
@@ -82,9 +76,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
 
         StudSharedPref s=new StudSharedPref(Dashboard.this);
         stud_data=s.getSharedData();
-
-
-
 
         if(stud_data.getSchoolName().equals("")){
             login_card.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +94,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
                 @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
-
-
                     Intent intent=new Intent(Dashboard.this,SchoolDashBoard.class);
                     startActivity(intent);
                 }
@@ -116,9 +105,7 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
 
     @Override
     protected void onStop() {
-
         sliderLayout.stopAutoCycle();
-
         super.onStop();
     }
 

@@ -87,6 +87,90 @@ public class loginPoJo {
         @Expose
         private String S_id;
 
+        @SerializedName("Caste")
+        @Expose
+        private String Caste;
+
+        @SerializedName("Category")
+        @Expose
+        private String Category;
+
+        @SerializedName("Religion")
+        @Expose
+        private String Religion;
+
+        @SerializedName("Father_Name")
+        @Expose
+        private String Father_Name;
+
+        @SerializedName("Mother_Name")
+        @Expose
+        private String Mother_Name;
+
+        @SerializedName("Username")
+        @Expose
+        private String Username;
+
+        @SerializedName("Password")
+        @Expose
+        private String Password;
+
+        public String getUsername() {
+            return Username;
+        }
+
+        public void setUsername(String username) {
+            Username = username;
+        }
+
+        public String getPassword() {
+            return Password;
+        }
+
+        public void setPassword(String password) {
+            Password = password;
+        }
+
+        public String getCaste() {
+            return Caste;
+        }
+
+        public void setCaste(String caste) {
+            Caste = caste;
+        }
+
+        public String getCategory() {
+            return Category;
+        }
+
+        public void setCategory(String category) {
+            Category = category;
+        }
+
+        public String getReligion() {
+            return Religion;
+        }
+
+        public void setReligion(String religion) {
+            Religion = religion;
+        }
+
+        public String getFather_Name() {
+            return Father_Name;
+        }
+
+        public void setFather_Name(String father_Name) {
+            Father_Name = father_Name;
+        }
+
+        public String getMother_Name() {
+            return Mother_Name;
+        }
+
+        public void setMother_Name(String mother_Name) {
+            Mother_Name = mother_Name;
+        }
+
         @SerializedName("Name")
         @Expose
         private String Name;

@@ -75,10 +75,17 @@ public class schoolLogin extends AppCompatActivity {
                     }
             }
         });
+
+         schoolList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 schoolList.clearFocus();
+             }
+         });
     }
 
     private void signin(){
-
+        Log.d("trace",stud_data.getFcm());
         url= SchoolURLs.get(SchoolNames.indexOf(schoolList.getText().toString()));
         Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),url,stud_data.getFcm());
         call.enqueue(new Callback<loginPoJo>() {
@@ -91,6 +98,8 @@ public class schoolLogin extends AppCompatActivity {
                         ss.setURL(response.body().getDomain());
                         ss.setSchoolName(response.body().getSchoolName());
                         ss.setFcm(s.getGlobalData().getFcm());
+
+
                         ss.setSchoolCode(response.body().getSchoolCode());
                         String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
                         //Subscribe To School Topic and Class/Div Topic
@@ -98,7 +107,6 @@ public class schoolLogin extends AppCompatActivity {
                         Log.d("trace",classTopic);
                         FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
                         FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
-
                         s.setSharedData(ss);
 
 
@@ -134,6 +142,7 @@ public class schoolLogin extends AppCompatActivity {
                             SchoolURLs.add(response.body().getData().get(i).getSchoolCode());
                             adapter=new ArrayAdapter<String>(schoolLogin.this,android.R.layout.simple_list_item_1,SchoolNames);
                             schoolList.setAdapter(adapter);
+
                            submit.setVisibility(View.VISIBLE);
                         }
                     }else{

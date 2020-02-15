@@ -68,7 +68,6 @@ public class StudSharedPref {
         stud_data=new loginPoJo.Stud_Data();
         SharedPreferences sharedPreferences;
         sharedPreferences = mContext.getSharedPreferences("Stud_Data", MODE_PRIVATE);
-
         Gson gson = new Gson();
         String fromSharedPref = sharedPreferences.getString("Stud_Data", "Empty");
         if (!fromSharedPref.equals("Empty")) {

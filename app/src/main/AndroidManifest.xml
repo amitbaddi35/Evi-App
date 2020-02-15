@@ -16,7 +16,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Library"></activity>
+        <activity android:name=".DigiLibrary" />
+        <activity android:name=".Profile" />
         <activity android:name=".FeesRecipts" />
         <activity android:name=".AttendanceDayWise" />
 
