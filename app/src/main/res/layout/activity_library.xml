@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:background="@color/colorAccent"
+    tools:context=".Profile">
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5">
+            <TextView
+                android:layout_weight="4.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Library"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/montserrat"
+                android:textSize="30dp"/>
+            <ImageView
+                android:id="@+id/submit"
+                android:visibility="gone"
+                android:layout_weight="0.5"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/digi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Digital Library"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/montserrat"
+                    android:drawableRight="@drawable/ic_rightarw"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="true"
+            app:helperText="Search For Library Books"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Search">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search"
+
+                android:drawableLeft="@drawable/ic_search"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ListView
+            android:layout_marginTop="2dp"
+            android:padding="10dp"
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

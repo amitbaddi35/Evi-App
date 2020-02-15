@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "873207950449",
+    "firebase_url": "https://app-notification-fea5b.firebaseio.com",
+    "project_id": "app-notification-fea5b",
+    "storage_bucket": "app-notification-fea5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873207950449:android:59852cad935fc1af3affd0",
+        "android_client_info": {
+          "package_name": "com.smsoft.evischoolmanagementapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873207950449-t14i27mg17543i0erojiot1bb18jl5fu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smsoft.evischoolmanagementapp",
+            "certificate_hash": "874e387105508c57d786cf6c0db028344f728d1c"
+          }
+        },
+        {
+          "client_id": "873207950449-df4j6rfhao5lkiutq4jkemivtjshnoj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHaCVAp15tbpXtXT4uT13cjZ4WQ_Bc6Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873207950449-df4j6rfhao5lkiutq4jkemivtjshnoj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
