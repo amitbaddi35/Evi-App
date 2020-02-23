@@ -45,7 +45,7 @@ public class feesAdapter extends ArrayAdapter<feesPoJo.Feesdata> {
 
         final LinearLayout layout=(LinearLayout)convertView.findViewById(R.id.add_layout);
 
-        ImageView img=(ImageView)convertView.findViewById(R.id.dropdown);
+        LinearLayout img=(LinearLayout)convertView.findViewById(R.id.dropdown);
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,6 @@ public class feesAdapter extends ArrayAdapter<feesPoJo.Feesdata> {
                 }else{
                     Toast.makeText(mContext, "Fees Not Paid", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

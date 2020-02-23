@@ -11,8 +11,8 @@ android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:orientation="vertical"
@@ -20,8 +20,8 @@ android:weightSum="10">
         android:paddingBottom="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_roundlogo100x100" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -40,46 +40,43 @@ android:weightSum="10">
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:singleLine="true"
-            android:textSize="20dp"  />
+            android:textSize="20sp"  />
 
 
 
 
     </LinearLayout>
 
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="10"
+    android:layout_height="match_parent"
+    android:layout_weight="2"
     android:paddingTop="30dp"
     android:layout_marginTop="0dp"
     android:background="@drawable/halfround"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/user"
-        android:gravity="center"
-        android:text="nbnxznmbxznz"
-        android:drawableLeft="@drawable/ic_usr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/days_one"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:drawableRight="@drawable/ic_edit2"
-        android:textColor="@color/colorPrimaryDark"
-       />
-
-
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/user"
+                    android:gravity="center"
+                    android:text="nbnxznmbxznz"
+                    android:drawableLeft="@drawable/ic_usr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/days_one"
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_edit2"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +96,7 @@ android:weightSum="10">
                             android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 android:src="@drawable/ic_fee"/>
                             <TextView
                                 android:layout_width="match_parent"
@@ -129,7 +126,7 @@ android:weightSum="10">
                             android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 android:src="@drawable/ic_notification"/>
                             <TextView
                                 android:layout_width="match_parent"
@@ -165,7 +162,7 @@ android:weightSum="10">
                             android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 android:src="@drawable/ic_exam"/>
                             <TextView
                                 android:layout_width="match_parent"
@@ -194,7 +191,7 @@ android:weightSum="10">
                             android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 android:src="@drawable/ic_timetable"/>
                             <TextView
                                 android:layout_width="match_parent"
@@ -230,7 +227,7 @@ android:weightSum="10">
                         android:orientation="vertical">
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="100dp"
                             android:src="@drawable/ic_attendance"/>
                         <TextView
                             android:layout_width="match_parent"
@@ -259,7 +256,7 @@ android:weightSum="10">
                         android:orientation="vertical">
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="100dp"
                             android:src="@drawable/ic_digilibrary"/>
                         <TextView
                             android:layout_width="match_parent"
@@ -295,7 +292,7 @@ android:weightSum="10">
                             android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 android:src="@drawable/ic_feedback"/>
                             <TextView
                                 android:layout_width="match_parent"
@@ -324,7 +321,7 @@ android:weightSum="10">
                             android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 android:src="@drawable/ic_event"/>
                             <TextView
                                 android:layout_width="match_parent"
@@ -343,10 +340,14 @@ android:weightSum="10">
                 </LinearLayout>
 
             </LinearLayout>
+
+
+
         </ScrollView>
 
-
-
-
 </LinearLayout>
+
+
+
+
 </LinearLayout>

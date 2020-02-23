@@ -9,6 +9,7 @@ import com.smsoft.evischoolmanagementapp.PoJo.ExamPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.ExamsListPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.FeesReciptsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.LibraryBooksPoJo;
+import com.smsoft.evischoolmanagementapp.PoJo.LibrarySingleBookPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.SchoolList;
 import com.smsoft.evischoolmanagementapp.PoJo.TimeTablePoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.feedbackListPoJo;
@@ -35,6 +36,11 @@ Created By Amit Baddi On 2020-01-24
     @POST("SchoolList.php")
     Call<SchoolList> schoollist();
 
+    @POST("Version.php")
+    Call<simplePoJo> version();
+
+
+
     @POST("EventsDates.php")
     Call<EventsDatesPoJo> EventsDates(@Query("URL") String URL);
 
@@ -48,6 +54,9 @@ Created By Amit Baddi On 2020-01-24
     @POST("Library.php")
     Call<LibraryBooksPoJo> Library(@Query("Key") String Key,
                                    @Query("URL") String URL);
+
+    @POST("LibraryBook.php")
+    Call<LibrarySingleBookPoJo> getBook(@Query("Key") String Key, @Query("URL") String URL);
 
     @POST("FeesRecipts.php")
     Call<FeesReciptsPoJo> getFeesRecipt(@Query("Register_Number") String Register_Number,

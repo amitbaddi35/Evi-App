@@ -39,9 +39,6 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_check"/>
         </LinearLayout>
-
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -50,12 +47,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
                 <TextView
+                    android:background="@color/colorPrimaryDark"
                     android:id="@+id/digi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Digital Library"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:text="View Digital Library"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
+                    android:textAlignment="center"
                     android:fontFamily="@font/montserrat"
                     android:drawableRight="@drawable/ic_rightarw"/>
 
@@ -69,7 +68,6 @@
             android:hint="Search">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search"
-
                 android:drawableLeft="@drawable/ic_search"
                 android:maxLines="1"
                 android:layout_width="match_parent"

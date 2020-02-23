@@ -27,11 +27,13 @@ import retrofit2.Response;
 public class Feedback extends AppCompatActivity {
     Spinner list;
     Button submit;
-    List<feedbackListPoJo.feedbackData> data=new ArrayList<feedbackListPoJo.feedbackData>();
     com.google.android.material.textfield.TextInputEditText message;
+    ApiInterface apiInterface;
+    List<feedbackListPoJo.feedbackData> data=new ArrayList<feedbackListPoJo.feedbackData>();
+
     String selected="";
     loginPoJo.Stud_Data stud_data;
-    ApiInterface apiInterface;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

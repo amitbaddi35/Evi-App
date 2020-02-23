@@ -79,7 +79,7 @@ public class Events extends AppCompatActivity {
 
 
         Date today = new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
           selectedDate = dateFormat.format(today);
 
         date_dis.setText("Date : "+selectedDate);

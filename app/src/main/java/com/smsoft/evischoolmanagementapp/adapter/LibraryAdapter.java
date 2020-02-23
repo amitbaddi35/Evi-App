@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.smsoft.evischoolmanagementapp.AttendanceDayWise;
+import com.smsoft.evischoolmanagementapp.BookView;
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.LibraryBooksPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.LibrarySingleBookPoJo;
@@ -44,12 +45,14 @@ public class LibraryAdapter extends ArrayAdapter<LibraryBooksPoJo.books> {
         TextView status=(TextView)convertView.findViewById(R.id.status);
         LinearLayout mLayout=(LinearLayout)convertView.findViewById(R.id.main);
 
-       /* mLayout.setOnClickListener(new View.OnClickListener() {
+        mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(mContext, BookView.class);
+                intent.putExtra("bookId",obj.getId());
+                mContext.startActivity(intent);
             }
-        });*/
+        });
 
         name.setText(obj.getName());
         status.setText(obj.getStatus());

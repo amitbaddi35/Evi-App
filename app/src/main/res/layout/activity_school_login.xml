@@ -7,104 +7,103 @@
     tools:context=".schoolLogin"
     android:background="@color/background"
     android:orientation="vertical"
-    android:weightSum="1.0">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_roundlogo100x100"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="@font/days_one"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-
-            android:text="EVI Institute Management Solutions"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.9"
-        android:paddingTop="30dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/halfround"
-        android:orientation="vertical">
+    android:weightSum="10">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="20dp">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_margin="10dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_roundlogo100x100"/>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Username">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/username"
-                    android:maxLines="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Password"
-                app:passwordToggleEnabled="true">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_margin="10dp"
-                android:hint="Select School"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/schoolName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="15dp"
-                        android:paddingLeft="10dp"
-                        android:maxLines="1"
-                        android:nextFocusDown="@id/submit"
-                        android:paddingBottom="15dp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <Button
-                android:visibility="gone"
-                android:id="@+id/submit"
-                android:layout_margin="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login"
+                android:gravity="center"
                 android:fontFamily="@font/days_one"
-                android:background="@drawable/btn"
-                android:textColor="@color/cardview_light_background"
-
-                />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:text="@string/dashboard"/>
 
 
         </LinearLayout>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:paddingTop="30dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/halfround"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Username">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/username"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Password"
+                    app:passwordToggleEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    android:hint="Select School"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/schoolName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="15dp"
+                            android:paddingLeft="10dp"
+                            android:maxLines="1"
+                            android:nextFocusDown="@id/submit"
+                            android:paddingBottom="15dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/submit"
+                    android:layout_margin="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:fontFamily="@font/days_one"
+                    android:background="@drawable/btn"
+                    android:textColor="@color/cardview_light_background"
+
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
 </LinearLayout>

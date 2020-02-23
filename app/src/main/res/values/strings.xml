@@ -4,4 +4,8 @@
     <string name="error_message">Weak Internet Signals</string>
     <string name="progrees_msg">Please wait</string>
     <string name="progrees_title">Loading...</string>
+    <string name="ok">Ok</string>
+    <string name="no">Cancel</string>
+
+    <string name="dashboard">EVI Institute Management Solutions</string>
 </resources>

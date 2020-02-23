@@ -8,8 +8,8 @@ android {
         applicationId "com.smsoft.evischoolmanagementapp"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "2.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.daimajia.slider:library:1.1.5@aar'
     implementation 'com.squareup.picasso:picasso:2.3.2'
 
-
+    implementation 'org.jsoup:jsoup:1.8.3'
     implementation 'sun.bob:mcalendarview:1.0.0'
 
 

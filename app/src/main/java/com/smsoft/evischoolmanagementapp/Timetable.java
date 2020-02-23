@@ -66,7 +66,7 @@ public class Timetable extends AppCompatActivity {
         calendar.add(Calendar.YEAR, 1);
 
         Date today = new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
         selectedDate = dateFormat.format(today);
         getTimetable(selectedDate);
 
