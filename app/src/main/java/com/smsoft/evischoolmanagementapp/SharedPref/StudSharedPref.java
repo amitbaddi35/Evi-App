@@ -32,6 +32,7 @@ public class StudSharedPref {
         sharedPreferences = mContext.getSharedPreferences("Stud_Data", MODE_PRIVATE);
         Gson gson=new Gson();
         String toSharedPrefString=gson.toJson(stud_data);
+        Log.d("trace",toSharedPrefString);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString("Stud_Data",toSharedPrefString);
         editor.commit();
@@ -58,7 +59,8 @@ public class StudSharedPref {
         if (!fromSharedPref.equals("Empty")) {
             stud_data = gson.fromJson(fromSharedPref, loginPoJo.Stud_Data.class);
         }else {
-           // stud_data.setSchoolName("");
+             stud_data.setSchoolName("");
+                stud_data.setFcm("");
         }
         return stud_data;
     }
@@ -70,6 +72,7 @@ public class StudSharedPref {
         sharedPreferences = mContext.getSharedPreferences("Stud_Data", MODE_PRIVATE);
         Gson gson = new Gson();
         String fromSharedPref = sharedPreferences.getString("Stud_Data", "Empty");
+        Log.d("trace",fromSharedPref);
         if (!fromSharedPref.equals("Empty")) {
                 stud_data = gson.fromJson(fromSharedPref, loginPoJo.Stud_Data.class);
              }else {

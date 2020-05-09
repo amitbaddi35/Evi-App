@@ -59,12 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         Map<String, String> data = remoteMessage.getData();
-
-
-
-        sendNotification(notification, data);
-
-
+            sendNotification(notification, data);
     }
 
     /**
@@ -92,7 +87,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setSmallIcon(R.mipmap.ic_launcher);
-
         try {
             String picture_url = data.get("picture_url");
             if (picture_url != null && !"".equals(picture_url)) {

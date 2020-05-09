@@ -46,22 +46,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
+        VersionChecker versionChecker = new VersionChecker();
+        try {
+            latestVersion = versionChecker.execute().get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        try {
+            currentVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         new Handler().postDelayed(new Runnable() {
 
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void run() {
-            VersionChecker versionChecker = new VersionChecker();
-                try {
-                    latestVersion = versionChecker.execute().get();
-                } catch (InterruptedException | ExecutionException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    currentVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
+
                 if(currentVersion.equals(latestVersion)){
                     Intent HomeIntent = new Intent(MainActivity.this, Dashboard.class);
                     startActivity(HomeIntent);

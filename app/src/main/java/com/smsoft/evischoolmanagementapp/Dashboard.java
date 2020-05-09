@@ -24,6 +24,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.smsoft.evischoolmanagementapp.PoJo.AdsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
 import com.smsoft.evischoolmanagementapp.SharedPref.StudSharedPref;
@@ -41,6 +42,7 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
     SliderLayout sliderLayout;
     ApiInterface apiInterface;
     ProgressDialog pd;
+    StudSharedPref s;
 
     @SuppressLint({"ResourceAsColor", "WrongThread"})
     @Override
@@ -59,11 +61,12 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
         login_card=(CardView)findViewById(R.id.login_card);
         schoolName=(TextView)findViewById(R.id.schoolName);
         valid=(TextView)findViewById(R.id.validText);
-        sliderLayout = (SliderLayout)findViewById(R.id.slider);
+
 
 
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
         fetchAds();
+        sliderLayout = (SliderLayout)findViewById(R.id.slider);
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.DepthPage);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
@@ -86,6 +89,7 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
                 }
             });
         }else{
+
             schoolName.setText(stud_data.getSchoolName());
             schoolName.setTextColor(R.color.green);
             valid.setText("Valid User");
@@ -94,8 +98,8 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
                 @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(Dashboard.this,SchoolDashBoard.class);
-                    startActivity(intent);
+                    signin(stud_data.getUsername(),stud_data.getPassword(),stud_data.getURL(),stud_data.getFcm());
+                    pd.show();
                 }
             });
         }
@@ -169,7 +173,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
                 Toast.makeText(Dashboard.this, R.string.error_message, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void deleteDirectoryTree(File fileOrDirectory) {
@@ -180,5 +183,50 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
         }
 
         fileOrDirectory.delete();
+    }
+
+    private void signin(String username,String password,String url,String fcm){
+        Call<loginPoJo> call=apiInterface.login(username,password,url,fcm);
+        call.enqueue(new Callback<loginPoJo>() {
+            @Override
+            public void onResponse(Call<loginPoJo> call, Response<loginPoJo> response) {
+                if(String.valueOf(response.code()).equals("200")){
+                    if(response.body().getSuccess().equals("true")){
+                        StudSharedPref s=new StudSharedPref(Dashboard.this);
+                        loginPoJo.Stud_Data ss=response.body().getData().get(0);
+                        ss.setURL(response.body().getDomain());
+                        ss.setSchoolName(response.body().getSchoolName());
+                        ss.setFcm(s.getGlobalData().getFcm());
+                        ss.setSchoolCode(response.body().getSchoolCode());
+                        String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
+                        //Subscribe To School Topic and Class/Div Topic
+                        FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
+                        FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
+                        s.setSharedData(ss);
+                        pd.dismiss();
+                        Intent intent=new Intent(Dashboard.this,SchoolDashBoard.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        pd.dismiss();
+                        stud_data.setSchoolName("");
+                        s=new StudSharedPref(Dashboard.this);
+                        s.setSharedData(stud_data);
+                        Intent intent=new Intent(Dashboard.this,schoolLogin.class);
+                        startActivity(intent);
+
+                    }
+                }else if(!String.valueOf(response.code()).equals("200")){
+                    pd.dismiss();
+                    Toast.makeText(Dashboard.this, R.string.error_message+response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<loginPoJo> call, Throwable t) {
+                pd.dismiss();
+                Toast.makeText(Dashboard.this, R.string.error_message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

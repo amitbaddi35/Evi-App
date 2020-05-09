@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -33,7 +34,20 @@ public class DigiLibrary extends AppCompatActivity {
         stud_data=s.getSharedData();
         webView=(WebView)findViewById(R.id.webview);
         progressbar = (ProgressBar) findViewById(R.id.paybar);
-        url=stud_data.getURL()+"/student_management_system/student/Contents/index.php";
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            //Log.d("trace",extras.getString("HeadId"));
+           url= extras.getString("url");
+           Log.d("trace","URL"+extras.getString("url"));
+        }else{
+            url=stud_data.getURL()+"/student_management_system/student/Contents/index.php";
+        }
+
+
+
+
         // Enable JavaScript
         webView.getSettings().setJavaScriptEnabled(true);
         // Set Render Priority To High
@@ -58,6 +72,24 @@ public class DigiLibrary extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                if(url.contains("logout1.php")){
+                    finish();
+                }
+                if (url.startsWith("upi://")) {
+
+                    webView.stopLoading();
+                    try {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        Intent chooser = Intent.createChooser(intent, "Pay with...");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            startActivity(chooser);
+                        }
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        String MakeShortText = "PhonePe have not been installed";
+                    }
+                }
                 progressbar.setVisibility(view.GONE);
                 //setTitle(view.getTitle());
             }

@@ -2,9 +2,12 @@ package com.smsoft.evischoolmanagementapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +28,7 @@ import retrofit2.Response;
 public class FeesDetails extends AppCompatActivity {
     private ListView listView;
     List<feesPoJo.Feesdata> data=null;
-
+    Button pay;
     ApiInterface apiInterface;
     loginPoJo.Stud_Data stud_data;
     @Override
@@ -38,19 +41,24 @@ public class FeesDetails extends AppCompatActivity {
          stud_data=s.getSharedData();
 
         TextView schoolname=(TextView)findViewById(R.id.schoolName);
+        TextView pay=(Button)findViewById(R.id.pay_btn);
         schoolname.setText(stud_data.getSchoolName());
         schoolname.setSelected(true);
 
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(FeesDetails.this,DigiLibrary.class);
+                intent.putExtra("url",stud_data.getURL()+"/app_web_payment.php?Mobile="+stud_data.getCommunication_number()+"&Code="+stud_data.getSchoolCode());
+                startActivity(intent);
+                finish();
+            }
+        });
 
         data=new ArrayList<feesPoJo.Feesdata>();
         listView=(ListView)findViewById(R.id.listview);
         getFees();
-        /*for(int i=1;i<=5;i++){
-            feesPoJo.Feesdata obj=new feesPoJo.Feesdata("Head-"+i,String.valueOf(2000*i),String.valueOf(1000*i),String.valueOf(500*i),"Sch"+i,String.valueOf(1000*i));
-            data.add(obj);
-        }
-        feesAdapter adapter=new feesAdapter(FeesDetails.this,data);
-        listView.setAdapter(adapter);*/
+
 
 
 

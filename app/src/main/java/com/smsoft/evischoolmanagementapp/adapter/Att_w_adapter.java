@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
 import com.smsoft.evischoolmanagementapp.AttendanceDayWise;
 import com.smsoft.evischoolmanagementapp.PoJo.Att_WholeYearPoJo;
 import com.smsoft.evischoolmanagementapp.R;
@@ -23,11 +25,7 @@ import java.util.List;
 
 public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
     Context mContext;
-
-
-
     List<Att_WholeYearPoJo.AttData> mList=new ArrayList<>();
-
     public Att_w_adapter(Context context, List<Att_WholeYearPoJo.AttData> list) {
         super(context, 0,list);
         this.mContext=context;
@@ -41,17 +39,14 @@ public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.attendance_layout, parent, false);
         }
+        CardView card=(CardView)convertView.findViewById(R.id.card_view);
         TextView Month=(TextView)convertView.findViewById(R.id.month);
         TextView Present=(TextView)convertView.findViewById(R.id.present);
         TextView Absent=(TextView)convertView.findViewById(R.id.absent);
         TextView Holidays=(TextView)convertView.findViewById(R.id.holiday);
 
         ImageView submit=(ImageView) convertView.findViewById(R.id.submit);
-
-
-
-
-        submit.setOnClickListener(new View.OnClickListener() {
+        card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, AttendanceDayWise.class);
@@ -67,9 +62,4 @@ public class Att_w_adapter extends ArrayAdapter<Att_WholeYearPoJo.AttData> {
 
         return convertView;
     }
-
-
-
-
-
 }

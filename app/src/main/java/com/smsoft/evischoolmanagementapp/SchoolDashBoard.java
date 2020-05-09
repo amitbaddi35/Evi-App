@@ -53,7 +53,6 @@ public class SchoolDashBoard extends AppCompatActivity {
         fees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(stud_data.getRegister_number().equals("")){
                     Toast.makeText(SchoolDashBoard.this, "Contact School to Update Register Number to Access Fees Details", Toast.LENGTH_LONG).show();
                 }else{
@@ -119,5 +118,11 @@ public class SchoolDashBoard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(SchoolDashBoard.this,Dashboard.class);
+        startActivity(intent);
     }
 }

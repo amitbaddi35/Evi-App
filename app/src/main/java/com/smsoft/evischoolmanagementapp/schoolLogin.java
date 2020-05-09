@@ -34,7 +34,7 @@ import retrofit2.Response;
 
 public class schoolLogin extends AppCompatActivity {
     ArrayAdapter<String> adapter;
-
+    ProgressDialog pd;
     List<String> SchoolNames;
     List<String> SchoolURLs;
     Button submit;
@@ -51,6 +51,11 @@ public class schoolLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_login);
 
+        pd=new ProgressDialog(schoolLogin.this);
+        pd.setTitle(R.string.progrees_title);
+        pd.setMessage("Loading Please wait...");
+        pd.setCancelable(false);
+
 
         StudSharedPref s=new StudSharedPref(schoolLogin.this);
         stud_data=s.getGlobalData();
@@ -62,15 +67,14 @@ public class schoolLogin extends AppCompatActivity {
         username=(com.google.android.material.textfield.TextInputEditText)findViewById(R.id.username);
         password=(com.google.android.material.textfield.TextInputEditText)findViewById(R.id.password);
         schoolList=(AutoCompleteTextView)findViewById(R.id.schoolName);
-
         submit=(Button)findViewById(R.id.submit);
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Validation val=new Validation();
-                    if(val.text_field_validation(username) & val.text_field_validation(password)){
-
+                    if(val.text_field_validation(username) & val.text_field_validation(password)
+                            & val.isElementPresentInList(schoolList,schoolList.getText().toString(),SchoolNames)){
+                        pd.show();
                         signin();
                     }
             }
@@ -85,7 +89,6 @@ public class schoolLogin extends AppCompatActivity {
     }
 
     private void signin(){
-        Log.d("trace",stud_data.getFcm());
         url= SchoolURLs.get(SchoolNames.indexOf(schoolList.getText().toString()));
         Call<loginPoJo> call=apiInterface.login(username.getText().toString(),password.getText().toString(),url,stud_data.getFcm());
         call.enqueue(new Callback<loginPoJo>() {
@@ -98,36 +101,34 @@ public class schoolLogin extends AppCompatActivity {
                         ss.setURL(response.body().getDomain());
                         ss.setSchoolName(response.body().getSchoolName());
                         ss.setFcm(s.getGlobalData().getFcm());
-
-
                         ss.setSchoolCode(response.body().getSchoolCode());
                         String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
                         //Subscribe To School Topic and Class/Div Topic
-                        Log.d("trace",String.valueOf(response.body().getSchoolCode()));
-                        Log.d("trace",classTopic);
+
                         FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
                         FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
                         s.setSharedData(ss);
-
-
+                        pd.dismiss();
                         Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
                         startActivity(intent);
                         finish();
                     }else {
+                        pd.dismiss();
                         Toast.makeText(schoolLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }else if(!String.valueOf(response.code()).equals("200")){
+                    pd.dismiss();
                     Toast.makeText(schoolLogin.this, R.string.error_message+response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<loginPoJo> call, Throwable t) {
+                pd.dismiss();
                 Toast.makeText(schoolLogin.this, R.string.error_message, Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     private void getSchools(){
 
         Call<SchoolList> call=apiInterface.schoollist();

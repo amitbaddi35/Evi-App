@@ -55,6 +55,18 @@ public class notificationsPoJo {
         @Expose
         private String Discription;
 
+        @SerializedName("Status")
+        @Expose
+        private String Status;
+
+        public String getStatus() {
+            return Status;
+        }
+
+        public void setStatus(String status) {
+            Status = status;
+        }
+
         public notifications(String date, String title, String discription) {
             Date = date;
             Title = title;

@@ -1,6 +1,9 @@
 package com.smsoft.evischoolmanagementapp.validation;
 
 import android.view.View;
+import android.widget.AutoCompleteTextView;
+
+import java.util.List;
 
 /*
 Created By Amit Baddi On 2020-01-25
@@ -31,6 +34,16 @@ public class Validation {
         }
         return true;
     }
+
+    public boolean isElementPresentInList(AutoCompleteTextView v, String city, List<String> CitiesName){
+        city=city.trim();
+        if(CitiesName.indexOf(city) < 0){
+            v.setError("Select School From Suggestion");
+            return false;
+        }
+        return true;
+    }
+
 
 
 
