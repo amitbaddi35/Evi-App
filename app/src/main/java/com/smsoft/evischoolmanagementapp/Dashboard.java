@@ -23,7 +23,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.google.firebase.iid.FirebaseInstanceId;
+
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.smsoft.evischoolmanagementapp.PoJo.AdsPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
@@ -105,8 +105,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
         }
     }
 
-
-
     @Override
     protected void onStop() {
         sliderLayout.stopAutoCycle();
@@ -118,10 +116,8 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
 
         Toast.makeText(this,slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
-
     @Override
     public void onPageSelected(int position) {
 
@@ -133,7 +129,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
     public void onPageScrollStateChanged(int state) {
 
     }
-
     private void fetchAds(){
         Call<AdsPoJo> call=apiInterface.getAds();
         call.enqueue(new Callback<AdsPoJo>() {
@@ -174,7 +169,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
             }
         });
     }
-
     public void deleteDirectoryTree(File fileOrDirectory) {
         if (fileOrDirectory.isDirectory()) {
             for (File child : fileOrDirectory.listFiles()) {
@@ -184,7 +178,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
 
         fileOrDirectory.delete();
     }
-
     private void signin(String username,String password,String url,String fcm){
         Call<loginPoJo> call=apiInterface.login(username,password,url,fcm);
         call.enqueue(new Callback<loginPoJo>() {

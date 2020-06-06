@@ -34,11 +34,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup:android-times-square:1.6.5@aar'
     implementation 'androidx.annotation:annotation:1.1.0'
-
-
     implementation 'com.daimajia.slider:library:1.1.5@aar'
-
-
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'org.jsoup:jsoup:1.8.3'
     implementation 'sun.bob:mcalendarview:1.0.0'

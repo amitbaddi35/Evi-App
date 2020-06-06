@@ -96,22 +96,47 @@ public class schoolLogin extends AppCompatActivity {
             public void onResponse(Call<loginPoJo> call, Response<loginPoJo> response) {
                 if(String.valueOf(response.code()).equals("200")){
                     if(response.body().getSuccess().equals("true")){
-                        StudSharedPref s=new StudSharedPref(schoolLogin.this);
-                        loginPoJo.Stud_Data ss=response.body().getData().get(0);
-                        ss.setURL(response.body().getDomain());
-                        ss.setSchoolName(response.body().getSchoolName());
-                        ss.setFcm(s.getGlobalData().getFcm());
-                        ss.setSchoolCode(response.body().getSchoolCode());
-                        String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
-                        //Subscribe To School Topic and Class/Div Topic
+                         if(response.body().getUser_type().equals("TEACHER")){
+                             StudSharedPref s=new StudSharedPref(schoolLogin.this);
+                             loginPoJo.Stud_Data ss=response.body().getData().get(0);
+                             ss.setURL(response.body().getDomain());
+                             ss.setUser_type(response.body().getUser_type());
+                             ss.setSchoolName(response.body().getSchoolName());
+                             ss.setFcm(s.getGlobalData().getFcm());
+                             ss.setSchoolCode(response.body().getSchoolCode());
+                             String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
+                             //Subscribe To School Topic and Class/Div Topic
 
-                        FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
-                        FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
-                        s.setSharedData(ss);
-                        pd.dismiss();
-                        Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
-                        startActivity(intent);
-                        finish();
+                             FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
+                             FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
+                             s.setSharedData(ss);
+                             pd.dismiss();
+                             Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
+                             startActivity(intent);
+                             finish();
+                         }else if(response.body().getUser_type().equals("STUDENT")){
+                             StudSharedPref s=new StudSharedPref(schoolLogin.this);
+                             loginPoJo.Stud_Data ss=response.body().getData().get(0);
+                             ss.setURL(response.body().getDomain());
+                             ss.setUser_type(response.body().getUser_type());
+                             ss.setSchoolName(response.body().getSchoolName());
+                             ss.setFcm(s.getGlobalData().getFcm());
+                             ss.setSchoolCode(response.body().getSchoolCode());
+                             String classTopic=response.body().getSchoolCode()+"-"+response.body().getData().get(0).getClassds()+"-"+response.body().getData().get(0).getDivision();
+                             //Subscribe To School Topic and Class/Div Topic
+
+                             FirebaseMessaging.getInstance().subscribeToTopic(response.body().getSchoolCode());
+                             FirebaseMessaging.getInstance().subscribeToTopic(classTopic);
+                             s.setSharedData(ss);
+                             pd.dismiss();
+                             Intent intent=new Intent(schoolLogin.this,SchoolDashBoard.class);
+                             startActivity(intent);
+                             finish();
+                         }
+
+
+
+
                     }else {
                         pd.dismiss();
                         Toast.makeText(schoolLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();

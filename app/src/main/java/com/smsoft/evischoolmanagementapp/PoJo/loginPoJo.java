@@ -25,6 +25,26 @@ public class loginPoJo {
     @Expose
     private String domain;
 
+    @SerializedName("user_type")
+    @Expose
+    private String user_type;
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
+    }
+
+    public String getSchoolcode() {
+        return schoolcode;
+    }
+
+    public void setSchoolcode(String schoolcode) {
+        this.schoolcode = schoolcode;
+    }
+
     @SerializedName("schoolName")
     @Expose
     private String schoolName;
@@ -252,6 +272,18 @@ public class loginPoJo {
         @Expose
         private String Sex;
 
+        @SerializedName("user_type")
+        @Expose
+        private String user_type;
+
+        public String getUser_type() {
+            return user_type;
+        }
+
+        public void setUser_type(String user_type) {
+            this.user_type = user_type;
+        }
+
         public String getSchoolName() {
             return schoolName;
         }
@@ -327,5 +359,4 @@ public class loginPoJo {
             Date_of_birth = date_of_birth;
         }
     }
-
 }
