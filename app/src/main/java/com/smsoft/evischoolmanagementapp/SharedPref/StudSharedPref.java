@@ -43,6 +43,7 @@ public class StudSharedPref {
         sharedPreferences = mContext.getSharedPreferences("Global", MODE_PRIVATE);
         Gson gson=new Gson();
         String toSharedPrefString=gson.toJson(stud_data);
+        Log.d("trace",toSharedPrefString);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString("Global",toSharedPrefString);
         editor.commit();

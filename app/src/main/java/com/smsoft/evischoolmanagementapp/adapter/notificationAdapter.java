@@ -78,4 +78,17 @@ public class notificationAdapter extends ArrayAdapter<notificationsPoJo.notifica
         return convertView;
     }
 
+    @Override
+    public int getViewTypeCount() {
+        if(mList.size()==0){
+            return 1;
+        }
+        return mList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
 }

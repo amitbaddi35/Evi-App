@@ -37,12 +37,14 @@ import retrofit2.Response;
 
 public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     CardView login_card;
-    loginPoJo.Stud_Data stud_data;
+
     TextView schoolName,valid;
     SliderLayout sliderLayout;
     ApiInterface apiInterface;
-    ProgressDialog pd;
     StudSharedPref s;
+    loginPoJo.Stud_Data stud_data;
+    ProgressDialog pd;
+
 
     @SuppressLint({"ResourceAsColor", "WrongThread"})
     @Override
@@ -188,6 +190,7 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
                         StudSharedPref s=new StudSharedPref(Dashboard.this);
                         loginPoJo.Stud_Data ss=response.body().getData().get(0);
                         ss.setURL(response.body().getDomain());
+                        ss.setUser_type(response.body().getUser_type());
                         ss.setSchoolName(response.body().getSchoolName());
                         ss.setFcm(s.getGlobalData().getFcm());
                         ss.setSchoolCode(response.body().getSchoolCode());

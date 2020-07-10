@@ -1,21 +1,47 @@
 package com.smsoft.evischoolmanagementapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.smsoft.evischoolmanagementapp.PoJo.FiltersPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
 import com.smsoft.evischoolmanagementapp.SharedPref.StudSharedPref;
 import com.smsoft.evischoolmanagementapp.adapter.LibraryAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SchoolDashBoard extends AppCompatActivity {
-    private LinearLayout fees,notifications,attendance,timetable,exam,digi,feedback,events,stud_layout,teacher_layout,notifications_t,attendance_t,marks_t,digi_t;
+    private LinearLayout fees,notifications,attendance,timetable,exam,digi,feedback,feedback_t,events,events_t,stud_layout,teacher_layout,notifications_t,attendance_t,marks_t,digi_t,self_attendance_t,timetable_t;
     private TextView user,user_t;
+    ViewGroup viewGroup;
+    FilterIniClass filtersini;
+
+
+
+
+    loginPoJo.Stud_Data stud_data;
+    ApiInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,16 +50,26 @@ public class SchoolDashBoard extends AppCompatActivity {
         fees=(LinearLayout)findViewById(R.id.fees);
         stud_layout=(LinearLayout)findViewById(R.id.stud_layout);
         teacher_layout=(LinearLayout)findViewById(R.id.teacher_layout);
+        apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
+
 
         StudSharedPref s=new StudSharedPref(SchoolDashBoard.this);
-        final loginPoJo.Stud_Data stud_data=s.getSharedData();
+         stud_data=s.getSharedData();
 
         if(stud_data.getUser_type().equals("TEACHER")){
             stud_layout.setVisibility(View.GONE);
+            viewGroup = findViewById(android.R.id.content);
+            //then we will inflate the custom alert dialog xml that we created
+
+
         }else if(stud_data.getUser_type().equals("STUDENT")){
             teacher_layout.setVisibility(View.GONE);
+            stud_layout.setVisibility(View.VISIBLE);
         }
 
+
+        self_attendance_t =(LinearLayout)findViewById(R.id.self_attendance_t);
+        timetable_t=(LinearLayout)findViewById(R.id.timetable_t);
         notifications=(LinearLayout)findViewById(R.id.notification);
         attendance=(LinearLayout)findViewById(R.id.attendance);
         timetable=(LinearLayout)findViewById(R.id.timetable);
@@ -43,11 +79,12 @@ public class SchoolDashBoard extends AppCompatActivity {
         events=(LinearLayout)findViewById(R.id.events);
         user=(TextView)findViewById(R.id.user);
         user_t=(TextView)findViewById(R.id.user_t);
-
         notifications_t=(LinearLayout)findViewById(R.id.notification_t);
         attendance_t=(LinearLayout)findViewById(R.id.attendance_t);
         marks_t=(LinearLayout)findViewById(R.id.marks_t);
         digi_t=(LinearLayout)findViewById(R.id.digilibrary_t);
+        feedback_t=(LinearLayout)findViewById(R.id.feedback_t);
+        events_t=(LinearLayout)findViewById(R.id.events_t);
 
         TextView schoolname=(TextView)findViewById(R.id.schoolName);
         schoolname.setText(stud_data.getSchoolName());
@@ -73,31 +110,59 @@ public class SchoolDashBoard extends AppCompatActivity {
             }
         });
 
+        self_attendance_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SchoolDashBoard.this,Attendance.class);
+                startActivity(intent);
+            }
+        });
+        timetable_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent=new Intent(SchoolDashBoard.this,Profile.class);
+                startActivity(intent);*/
+            }
+        });
+
         notifications_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(SchoolDashBoard.this,TeacherSendNotification.class);
+                startActivity(intent);
             }
         });
+
+        events_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SchoolDashBoard.this,Events.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         marks_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                filtersini=new FilterIniClass(SchoolDashBoard.this,viewGroup,stud_data.getS_id(),stud_data.getURL());
             }
         });
 
         attendance_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(SchoolDashBoard.this,TeacherAtt.class);
+                startActivity(intent);
             }
         });
 
         digi_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(SchoolDashBoard.this, Library.class);
+                startActivity(intent);
             }
         });
 
@@ -111,7 +176,6 @@ public class SchoolDashBoard extends AppCompatActivity {
                     Intent intent=new Intent(SchoolDashBoard.this,FeesDetails.class);
                     startActivity(intent);
                 }
-
             }
         });
 
@@ -140,6 +204,14 @@ public class SchoolDashBoard extends AppCompatActivity {
         });
 
         feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SchoolDashBoard.this,Feedback.class);
+                startActivity(intent);
+            }
+        });
+
+        feedback_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(SchoolDashBoard.this,Feedback.class);
@@ -177,4 +249,5 @@ public class SchoolDashBoard extends AppCompatActivity {
         Intent intent=new Intent(SchoolDashBoard.this,Dashboard.class);
         startActivity(intent);
     }
+
 }

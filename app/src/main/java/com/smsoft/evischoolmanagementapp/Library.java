@@ -24,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Library extends AppCompatActivity {
-    TextView digi;
+    TextView digi,add_digi;
     com.google.android.material.textfield.TextInputEditText search;
     ListView listView;
     LibraryAdapter adapter;
@@ -42,6 +42,22 @@ public class Library extends AppCompatActivity {
 
 
         digi=(TextView)findViewById(R.id.digi);
+        add_digi=(TextView)findViewById(R.id.add_digi);
+
+        if(stud_data.getUser_type().equals("TEACHER")){
+            add_digi.setVisibility(View.VISIBLE);
+        }
+
+        add_digi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Library.this,DigiLibraryUpload.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         search=(com.google.android.material.textfield.TextInputEditText)findViewById(R.id.search);
         listView=(ListView)findViewById(R.id.listview);
 
