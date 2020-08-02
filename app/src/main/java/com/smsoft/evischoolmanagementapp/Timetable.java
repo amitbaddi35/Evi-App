@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -76,9 +77,14 @@ public class Timetable extends AppCompatActivity {
 
 
                 selectedDate=i +"-"+(i1 + 1)+"-" +i2;
+                if(stud_data.getUser_type().equals("TEACHER")){
+                    Log.d("trace",stud_data.getUser_type());
+                    getTeacherTimetable(selectedDate);
+                }else{
 
-                //String msg =  i +"-"+(i1 + 1)+"-" +i2;
-                getTimetable(selectedDate);
+                    getTimetable(selectedDate);
+                }
+
             }
         });
 
@@ -89,7 +95,7 @@ public class Timetable extends AppCompatActivity {
     }
 
     private void getTimetable(String Date){
-        retrofit2.Call<TimeTablePoJo> call=apiInterface.getTimetable(Date,stud_data.getClassds(),stud_data.getDivision(),stud_data.getURL());
+        retrofit2.Call<TimeTablePoJo> call=apiInterface.getTimetable(Date,stud_data.getClassds(),"s",stud_data.getDivision(),stud_data.getURL());
         call.enqueue(new Callback<TimeTablePoJo>() {
             @Override
             public void onResponse(retrofit2.Call<TimeTablePoJo> call, Response<TimeTablePoJo> response) {
@@ -113,4 +119,32 @@ public class Timetable extends AppCompatActivity {
             }
         });
     }
+
+    private void getTeacherTimetable(String Date){
+        retrofit2.Call<TimeTablePoJo> call=apiInterface.getTeacherTimeTable(Date,stud_data.getS_id(),"t",stud_data.getURL());
+        call.enqueue(new Callback<TimeTablePoJo>() {
+            @Override
+            public void onResponse(retrofit2.Call<TimeTablePoJo> call, Response<TimeTablePoJo> response) {
+                if(String.valueOf(response.code()).equals("200")){
+                    if(response.body().getSuccess().equals("true")){
+
+                        TimetableAdapter adapter=new TimetableAdapter(Timetable.this,response.body().getData());
+                        listView.setAdapter(adapter);
+                    }else{
+                        Toast.makeText(Timetable.this, response.body().getSuccess(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(Timetable.this, R.string.error_message, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TimeTablePoJo> call, Throwable t) {
+                Toast.makeText(Timetable.this, R.string.error_message, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+
 }

@@ -37,7 +37,8 @@ import retrofit2.http.Query;
 
 /*
 Created By Amit Baddi On 2020-01-24
-*/public interface ApiInterface {
+*/
+public interface ApiInterface {
     @POST("loginAuth.php")
     Call<loginPoJo> login(@Query("Username") String Username,
                           @Query("Password") String Password,
@@ -121,8 +122,15 @@ Created By Amit Baddi On 2020-01-24
     @POST("Timetable.php")
     Call<TimeTablePoJo> getTimetable(@Query("Date") String Date,
                                    @Query("Class") String Class,
+                                     @Query("type") String type,
                                    @Query("Division") String Division,
                                    @Query("URL") String URL);
+
+    @POST("Timetable.php")
+    Call<TimeTablePoJo> getTeacherTimeTable(@Query("Date") String Date,
+                                     @Query("SID") String SID,
+                                     @Query("type") String type,
+                                     @Query("URL") String URL);
 
     @POST("ExamList.php")
     Call<ExamsListPoJo> getExamList(@Query("Class") String Class,

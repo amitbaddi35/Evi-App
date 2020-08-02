@@ -53,7 +53,6 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
         setContentView(R.layout.activity_dashboard);
 
 
-
         pd=new ProgressDialog(Dashboard.this);
         pd.setCancelable(false);
         pd.setTitle(R.string.progrees_title);
