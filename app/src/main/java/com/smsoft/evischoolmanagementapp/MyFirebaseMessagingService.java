@@ -15,6 +15,7 @@ import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
@@ -60,6 +61,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         Map<String, String> data = remoteMessage.getData();
             sendNotification(notification, data);
+            Log.d("trace",notification.toString());
     }
 
     /**
@@ -70,11 +72,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
         Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        notification.getClickAction();
-        Intent intent = new Intent(this, Dashboard.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        String onclic=notification.getClickAction();
+        Intent intent = null;
+        String title=data.get("title");
+        String body=data.get("body");
 
+        if(onclic != null){
+            if(onclic.equals("Notifi")){
+                intent=new Intent(this,NotificationView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("title",title);
+                intent.putExtra("body",body);
+            }else if(onclic.equals("Survey")){
+                intent=new Intent(this,SurveyActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+        }else{
+            intent=new Intent(this,MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        }
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
                 .setContentTitle(notification.getTitle())
                 .setContentText(notification.getBody())

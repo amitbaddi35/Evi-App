@@ -24,6 +24,7 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.smsoft.evischoolmanagementapp.PoJo.loginPoJo;
 import com.smsoft.evischoolmanagementapp.PoJo.simplePoJo;
 import com.smsoft.evischoolmanagementapp.SharedPref.StudSharedPref;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
+        FirebaseMessaging.getInstance().subscribeToTopic("Amit");
+
         VersionChecker versionChecker = new VersionChecker();
         try {
             latestVersion = versionChecker.execute().get();
