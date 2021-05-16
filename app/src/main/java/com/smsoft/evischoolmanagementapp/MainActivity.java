@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
-        FirebaseMessaging.getInstance().subscribeToTopic("Amit");
 
         VersionChecker versionChecker = new VersionChecker();
         try {

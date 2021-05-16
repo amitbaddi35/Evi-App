@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".ClassesActivity"></activity>
         <activity android:name=".DigiLibraryUpload" />
         <activity android:name=".TeacherSendNotification" />
         <activity android:name=".MarksEntry" />
@@ -41,21 +41,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SurveyActivity">
             <intent-filter>
                 <action android:name="Survey" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".NotificationView" >
+        <activity android:name=".NotificationView">
             <intent-filter>
                 <action android:name="Notifi" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -73,11 +72,11 @@
         android:normalScreens="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

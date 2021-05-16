@@ -135,6 +135,18 @@ public class loginPoJo {
         @Expose
         private String Password;
 
+        @SerializedName("SchoolImage")
+        @Expose
+        private String SchoolImage;
+
+        public String getSchoolImage() {
+            return SchoolImage;
+        }
+
+        public void setSchoolImage(String schoolImage) {
+            SchoolImage = schoolImage;
+        }
+
         public String getUsername() {
             return Username;
         }

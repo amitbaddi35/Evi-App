@@ -42,16 +42,27 @@ public class SchoolDashBoard extends AppCompatActivity {
 
     loginPoJo.Stud_Data stud_data;
     ApiInterface apiInterface;
+    Button lms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_dash_board);
 
         fees=(LinearLayout)findViewById(R.id.fees);
+        lms=(Button)findViewById(R.id.lms);
         stud_layout=(LinearLayout)findViewById(R.id.stud_layout);
         teacher_layout=(LinearLayout)findViewById(R.id.teacher_layout);
         apiInterface=ApiClient.getApiClient().create(ApiInterface.class);
 
+        lms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SchoolDashBoard.this,DigiLibrary.class);
+                intent.putExtra("url","https://evilms.in/public/");
+                startActivity(intent);
+            }
+        });
 
         StudSharedPref s=new StudSharedPref(SchoolDashBoard.this);
          stud_data=s.getSharedData();

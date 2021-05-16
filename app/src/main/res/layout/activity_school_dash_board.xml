@@ -63,6 +63,12 @@ android:weightSum="10">
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <Button
+                        android:id="@+id/lms"
+                        android:layout_gravity="center"
+                        android:text="English LMS Portal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                     <LinearLayout
                         android:id="@+id/stud_layout"
                         android:visibility="gone"
@@ -626,13 +632,9 @@ android:weightSum="10">
 
                     </LinearLayout>
 
-
                 </LinearLayout>
         </ScrollView>
 
 </LinearLayout>
-
-
-
 
 </LinearLayout>

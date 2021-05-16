@@ -211,6 +211,4 @@ public interface ApiInterface {
                                           @Query("Div") String Div,
                                           @Query("URL") String URL,
                                           @Query("Code") String Code);
-
-
 }

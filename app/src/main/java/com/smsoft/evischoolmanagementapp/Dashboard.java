@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class Dashboard extends AppCompatActivity implements BaseSliderView.OnSli
     StudSharedPref s;
     loginPoJo.Stud_Data stud_data;
     ProgressDialog pd;
-
+    LinearLayout lms;
 
     @SuppressLint({"ResourceAsColor", "WrongThread"})
     @Override
